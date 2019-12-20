@@ -3,17 +3,23 @@ import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-const UserForm = (values) => {
+const UserForm = ({ values, errors, touched }) => {
     return ( 
         <div>
             <Form>
+                {touched.name && errors.name && <p>{errors.name}</p>}
                 <Field type='text' name='name' placeholder='Name' />
+                <br />
+                {touched.email && errors.email && <p>{errors.email}</p>}
                 <Field type='email' name='email' placeholder='Email' />
+                <br />
+                {touched.password && errors.password && <p>{errors.password}</p>}
                 <Field type='password' name='password' placeholder='Password' />
+                <br />
                 <Field type='checkbox' name='tos' checked={values.tos} />
                 <span><em>Terms of Service</em></span>
                 <br />
-                <button>Sign Up</button>
+                <button type='submit'>Sign Up</button>
             </Form>
         </div>
      );
